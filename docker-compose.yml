@@ -3,11 +3,15 @@ services:
     build: ./frontend
     ports:
       - "5173:5173"
+    environment:
+      - VITE_API_URL=http://backend:3000
 
   backend:
     build: ./backend
     ports:
       - "3000:3000"
+    env_file:
+      - ./backend/.env
 
   db:
     image: postgres:16
